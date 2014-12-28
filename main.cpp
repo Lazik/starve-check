@@ -29,13 +29,13 @@ static int run_stress(int cpucount, int timeLimit)
     // Sidestep all the issues with copying
     // and ensure flat memory layout
     std::unique_ptr<stress_instance[]> instances(new stress_instance[cpucount]);
+    
     stress_instance* begin = &instances[0];
     stress_instance* end = &instances[cpucount];
-    std::for_each(begin, end,
-    [](stress_instance& instance)
-    {
+    
+    std::for_each(begin, end,[](stress_instance& instance) {
         instance.run();
-    });
+    }); // Can you use auto instead of [](...& instance)?
 
     // Use a condition variable wait for delays
     // It looks more like we are doing work than
