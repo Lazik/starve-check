@@ -33,40 +33,24 @@ static int run_stress(int cpucount, int timeLimit)
     stress_instance* begin = &instances[0];
     stress_instance* end = &instances[cpucount];
     
-    
-    ///
-    
     /*
-    for (auto it = s.begin(); it != s.end(); it++) {
+    (stress_instance*)::iterator it;
+    
+    for (it = s.begin(); it != s.end(); it++) {
      cout << *it << endl;
     }
-    
-    int * coucou() {
-        
-        some_logic();
-    }
-    
-    DWORD blabla;
-    blabla = coucou();
-    
-    
-    person.SayHello = new Func<string>(() => {
-        return person.FirstName + " " + person.LastName + " says hello";
-    });
-    
     */
-    
-    
-    // for (vector<int>::iterator it = s.begin(); it!=s.end(); it++) {
-    //
-    //...
-    //..
-    for (auto it = begin; it != end; )
-    
     
     std::for_each(begin, end,[](stress_instance& instance) {
         instance.run();
-    }); // Can you use auto instead of [](...& instance)?
+    }); // no auto in portable code
+    /*
+    template <typename T>
+        bool erase_partof(vector<T> &vec, string search)
+        {
+             vector<T>::iterator start_itr=vec.begin(), end_itr;
+        }
+    */
 
     // Use a condition variable wait for delays
     // It looks more like we are doing work than
